@@ -130,26 +130,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Adaptacion.cpp" />
     <ClCompile Include="Alien.cpp" />
-    <ClCompile Include="Atrapado.cpp" />
     <ClCompile Include="Clickale.cpp" />
     <ClCompile Include="Cross.cpp" />
-    <ClCompile Include="Crosshair.cpp" />
-    <ClCompile Include="Drag.cpp" />
-    <ClCompile Include="Splats.cpp" />
-    <ClCompile Include="Unidad4.cpp" />
+    <ClCompile Include="TpIntegrador.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Adaptacion.h" />
     <ClInclude Include="Alien.h" />
     <ClInclude Include="Atrapado.h" />
     <ClInclude Include="Clickale.h" />
     <ClInclude Include="Cross.h" />
-    <ClInclude Include="Crosshair.h" />
-    <ClInclude Include="Drag.h" />
-    <ClInclude Include="SMLFConfiguration.h" />
-    <ClInclude Include="Splats.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,11 +1,7 @@
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 #include <iostream>
-#include "Crosshair.h"
-#include "Drag.h"
-#include "Splats.h"
 #include "Atrapado.h"
-#include "Adaptacion.h"
 #include "Clickale.h"
 using namespace sf;
 

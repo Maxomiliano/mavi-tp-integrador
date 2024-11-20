@@ -1,21 +1,12 @@
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 #include <iostream>
-#include "Atrapado.h"
-#include "Clickale.h"
 using namespace sf;
 
 
 
 int main()
 {
-	//Crosshair crosshair;
-	//Drag drag;
-	//Splats splat;
-	//Atrapado atrapado;
-	//Adaptacion adaptacion;
-	Clickale clickale;
-	//clickale.Play();
 	return 0;
 }
 

@@ -1,18 +1,21 @@
 #include "Clickale.h"
 #include "Alien.h"
 #include "Cross.h"
+#include "Character.h"
+#include "Enemy.h"
+#include "Innocent.h"
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 #include <iostream>
 using namespace sf;
 
-Clickale::Clickale() : window(VideoMode(800, 600), "Clickale"), aliensDefeated(0)
+Clickale::Clickale() : window(VideoMode(800, 600), "Clickale"), enemiesDefeated(0)
 {
 	crossTex.loadFromFile("crosshair.png");
 	alienTex.loadFromFile("et.png");
 
 	cross.setTexture(crossTex);
-	alien.setTexture(alienTex);
+	enemy.setTexture(alienTex);
 
 	float widthCross = (float)crossTex.getSize().x;
 	float heightCross = (float)crossTex.getSize().y;
@@ -22,8 +25,8 @@ Clickale::Clickale() : window(VideoMode(800, 600), "Clickale"), aliensDefeated(0
 	float scaleX = widthCross / widthAlien;
 	float scaleY = heightCross / heightAlien;
 
-	alien.setScale(scaleX, scaleY);
-	alien.Spawn(window.getSize());
+	enemy.setScale(scaleX, scaleY);
+	enemy.Spawn(window.getSize());
 
 	Play();
 }
@@ -47,13 +50,13 @@ void Clickale::Play()
 			case Event::MouseButtonPressed:
 				if (mouse.isButtonPressed(mouse.Left))
 				{
-					if (alien.IsClicked(Vector2f(evt.mouseButton.x, evt.mouseButton.y)))
+					if (enemy.IsClicked(Vector2f(evt.mouseButton.x, evt.mouseButton.y)))
 					{
-						aliensDefeated++;
+						enemiesDefeated++;
 					}
-					if (aliensDefeated < maxScore)
+					if (enemiesDefeated < maxScore)
 					{
-						alien.Spawn(window.getSize());
+						enemy.Spawn(window.getSize());
 					}
 					else
 					{
@@ -64,7 +67,7 @@ void Clickale::Play()
 			}
 		}
 		window.clear();
-		alien.Draw(window);
+		enemy.Draw(window);
 		cross.Draw(window);
 		window.display();
 	}

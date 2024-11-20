@@ -13,3 +13,7 @@ void Innocent::DissapearAfterTime()
 {
 	isVisible = false;
 }
+
+void Innocent::setTexture(const Texture& texture) {
+	inoSpr.setTexture(texture);
+}

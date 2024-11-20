@@ -1,6 +1,9 @@
 #pragma once
 #include "Alien.h"
 #include "Cross.h"
+#include "Enemy.h"
+#include "Innocent.h"
+#include "Character.h"
 #include <SFML/Graphics.hpp>
 using namespace sf;
 
@@ -13,8 +16,8 @@ public:
 private:
 	RenderWindow window;
 	Cross cross;
-	Alien alien;
-	int aliensDefeated;
+	Enemy enemy;
+	int enemiesDefeated;
 	int maxScore = 5;
 
 	Texture crossTex;

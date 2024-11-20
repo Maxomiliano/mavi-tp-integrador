@@ -1,3 +1,4 @@
+/*
 #include "Alien.h"
 #include <SFML/Graphics.hpp>
 
@@ -45,3 +46,4 @@ void Alien::setTexture(const sf::Texture& texture) {
 void Alien::setScale(float x, float y) {
 	alienSpr.setScale(x, y);
 }
+*/

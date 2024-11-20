@@ -1,4 +1,7 @@
 /*
+
+TODO: DELETE
+
 #include "Alien.h"
 #include <SFML/Graphics.hpp>
 

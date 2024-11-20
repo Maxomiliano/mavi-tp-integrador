@@ -1,3 +1,6 @@
+/*
+TODO: DELETE
+
 #pragma once
 #include "Alien.h"
 #include "Cross.h"
@@ -24,5 +27,6 @@ private:
 	Texture alienTex;
 };
 
+*/
 
 

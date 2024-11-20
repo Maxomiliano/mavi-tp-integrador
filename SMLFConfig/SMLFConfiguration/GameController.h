@@ -26,10 +26,13 @@ public:
 	void RestartGame();
 
 private:
+	Event evt;
+	Mouse mouse;
 	RenderWindow window;
 	State state;
 	Cross cross;
 	Enemy enemy;
+	Innocent innocent;
 	Texture crossTex;
 	Texture enemyTex;
 	Texture innocentTex;

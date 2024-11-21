@@ -7,10 +7,19 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 using namespace sf;
+using namespace std;
 
-GameController::GameController()
+GameController::GameController() :
+
+window(VideoMode(1024, 768, 32), "TPIntegrador"), state(State::MainMenu), maxLives(3), score(0)
 {
+	crossTex.loadFromFile("crosshair.png");
+	enemyTex.loadFromFile("enemy.png");
+	innocentTex.loadFromFile("innocent.jpg");
+	bgTex.loadFromFile("background.png");
 
+	cross.setTexture(crossTex);
+	bgSpr.setTexture(bgTex);
 }
 
 void GameController::Play()
@@ -44,7 +53,7 @@ void GameController::ProcessEvents()
 
 void GameController::Update()
 {
-	//Acá van los spwans??
+	SpawnCharacters();
 }
 
 void GameController::Render()
@@ -52,12 +61,24 @@ void GameController::Render()
 	window.clear();
 	enemy.Draw(window);
 	innocent.Draw(window);
+	window.draw(bgSpr);
 	window.display();
 }
 
 void GameController::SpawnCharacters()
 {
-
+	if (rand() % 100 < 5)
+	{
+		enemy.setTexture(enemyTex);
+		enemy.Spawn(window.getSize());
+		enemies.push_back(enemy);
+	}
+	if (rand() % 100 < 3)
+	{
+		innocent.setTexture(innocentTex);
+		innocent.Spawn(window.getSize());
+		innocents.push_back(innocent);
+	}
 }
 
 void GameController::CheckCollisions()

@@ -1,3 +1,4 @@
+/*
 #include "Clickale.h"
 #include "Alien.h"
 #include "Cross.h"
@@ -72,3 +73,4 @@ void Clickale::Play()
 		window.display();
 	}
 }
+*/

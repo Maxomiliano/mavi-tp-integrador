@@ -5,6 +5,7 @@
 #include "Character.h"
 #include <SFML/Graphics.hpp>
 using namespace sf;
+using namespace std;
 
 enum class State
 {
@@ -37,6 +38,10 @@ private:
 	Texture enemyTex;
 	Texture innocentTex;
 	Texture bgTex;
+	Sprite bgSpr;
+
+	vector<Enemy> enemies;
+	vector<Innocent> innocents;
 
 	int enemiesDefeated;
 	int score;

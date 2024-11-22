@@ -62,6 +62,7 @@ void GameController::Render()
 	enemy.Draw(window);
 	innocent.Draw(window);
 	window.draw(bgSpr);
+	cross.Draw(window);
 	window.display();
 }
 

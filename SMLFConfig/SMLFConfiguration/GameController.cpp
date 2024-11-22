@@ -11,7 +11,7 @@ using namespace std;
 
 GameController::GameController() :
 
-window(VideoMode(1024, 768, 32), "TPIntegrador"), state(State::MainMenu), maxLives(3), score(0)
+	window(VideoMode(1024, 768, 32), "TPIntegrador"), state(State::MainMenu), maxLives(3), score(0)
 {
 	crossTex.loadFromFile("crosshair.png");
 	enemyTex.loadFromFile("enemy.png");
@@ -59,9 +59,16 @@ void GameController::Update()
 void GameController::Render()
 {
 	window.clear();
-	enemy.Draw(window);
-	innocent.Draw(window);
+
 	window.draw(bgSpr);
+	for (auto& enemy : enemies)
+	{
+		enemy.Draw(window);
+	}
+	for (auto& innocent : innocents)
+	{
+		innocent.Draw(window);
+	}
 	cross.Draw(window);
 	window.display();
 }
@@ -70,12 +77,14 @@ void GameController::SpawnCharacters()
 {
 	if (rand() % 100 < 5)
 	{
+		Enemy enemy;
 		enemy.setTexture(enemyTex);
 		enemy.Spawn(window.getSize());
 		enemies.push_back(enemy);
 	}
-	if (rand() % 100 < 3)
+	else
 	{
+		Innocent innocent;
 		innocent.setTexture(innocentTex);
 		innocent.Spawn(window.getSize());
 		innocents.push_back(innocent);
@@ -84,19 +93,25 @@ void GameController::SpawnCharacters()
 
 void GameController::CheckCollisions()
 {
-	if (mouse.isButtonPressed(mouse.Left))
+	if (evt.type == Event::MouseButtonPressed && mouse.isButtonPressed(mouse.Left))
 	{
-		if (enemy.IsClicked(Vector2f(evt.mouseButton.x, evt.mouseButton.y)))
+		for (auto& enemy : enemies)
 		{
-			enemiesDefeated++;
+			if (enemy.IsClicked(Vector2f(evt.mouseButton.x, evt.mouseButton.y)))
+			{
+				enemiesDefeated++;
+			}
+			if (enemiesDefeated < maxLives)
+			{
+				enemy.Spawn(window.getSize());
+			}
 		}
-		if (enemiesDefeated < maxLives)
+		for (auto& innocent : innocents)
 		{
-			enemy.Spawn(window.getSize());
-		}
-		else
-		{
-			window.close();
+			if (innocent.IsClicked(Vector2f(evt.mouseButton.x, evt.mouseButton.y)))
+			{
+				maxLives--;
+			}
 		}
 	}
 }

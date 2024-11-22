@@ -19,6 +19,7 @@ void Enemy::Spawn(Vector2u windowSize)
 	Character::Spawn(windowSize);
 }
 
+
 void Enemy::setTexture(const Texture& texture) {
-	enemySpr.setTexture(texture);
+	charSpr.setTexture(texture);
 }

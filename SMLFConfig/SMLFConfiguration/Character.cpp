@@ -18,8 +18,8 @@ Character::~Character()
 
 void Character::Spawn(Vector2u windowSize)
 {
-	float x = rand() % windowSize.x;
-	float y = rand() % windowSize.y;
+	float x = rand() % windowSize.x - charSpr.getGlobalBounds().width;
+	float y = rand() % windowSize.y - charSpr.getGlobalBounds().height;
 	charSpr.setPosition(x, y);
 	isVisible = true;
 }

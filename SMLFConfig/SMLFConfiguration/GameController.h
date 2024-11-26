@@ -27,6 +27,7 @@ public:
 	void RestartGame();
 
 private:
+	Clock clock;
 	Event evt;
 	Mouse mouse;
 	RenderWindow window;
@@ -40,8 +41,9 @@ private:
 	Texture bgTex;
 	Sprite bgSpr;
 
-	vector<Enemy> enemies;
-	vector<Innocent> innocents;
+	Character* spawnedChar = NULL;
+	//vector<Enemy> enemies;
+	//vector<Innocent> innocents;
 	vector<Vector2f> spawnPositions;
 	int randomPosition;
 	Vector2f spawn;
@@ -49,5 +51,7 @@ private:
 	int enemiesDefeated;
 	int score;
 	int maxLives = 3;
+	float actionTime = 0.0f;
+	float actionDelay = 0.5f;
 };
 

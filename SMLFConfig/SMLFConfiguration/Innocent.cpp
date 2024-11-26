@@ -6,7 +6,7 @@ using namespace sf;
 
 Innocent::Innocent() : Character()
 {
-
+	setCharacterType(CharacterType::Innocent);
 }
 
 void Innocent::DissapearAfterTime()

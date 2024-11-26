@@ -6,7 +6,7 @@ using namespace sf;
 
 Enemy::Enemy() : Character()
 {
-
+	setCharacterType(CharacterType::Enemy);
 }
 
 void Enemy::Shoot()

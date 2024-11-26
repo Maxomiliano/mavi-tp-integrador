@@ -6,6 +6,11 @@ using namespace sf;
 class Character
 {
 public: Character();
+	  enum class CharacterType
+	  {
+		  Enemy,
+		  Innocent
+	  };
 	  virtual ~Character();
 	  virtual void Spawn(Vector2f& position);
 	  virtual bool IsClicked(Vector2f crossPosition);
@@ -14,8 +19,10 @@ public: Character();
 	  bool IsVisible() const;
 	  void setTexture(const Texture& texture);
 	  void setScale(float x, float y);
+	  void setCharacterType(CharacterType charType) { type = charType; }
+	  CharacterType getCharacterType() { return type; }
 protected:
-	//Texture charTex;
+	CharacterType type;
 	Sprite charSpr;
 	bool isVisible;
 };

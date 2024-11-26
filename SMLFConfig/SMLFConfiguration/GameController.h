@@ -24,6 +24,9 @@ public:
 	void Render();
 	void SpawnCharacters();
 	void CheckCollisions();
+	void RenderMainMenu();
+	void RenderPlayScene();
+	void RenderGameOver();
 	void RestartGame();
 
 private:
@@ -40,6 +43,8 @@ private:
 	Texture innocentTex;
 	Texture bgTex;
 	Sprite bgSpr;
+	Font font;
+	Text playButton, exitButton, resultText, backToMenuButton, hud;
 
 	Character* spawnedChar = NULL;
 	vector<Vector2f> spawnPositions;

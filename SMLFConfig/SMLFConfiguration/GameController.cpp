@@ -55,30 +55,43 @@ void GameController::ProcessEvents()
 
 void GameController::Update()
 {
-	float time = clock.restart().asSeconds();
-	actionTime += time;
-	if (spawnedChar != NULL)
+	if (state == State::Play)
 	{
-		if (actionTime >= actionDelay)
+		float time = clock.restart().asSeconds();
+		actionTime += time;
+		if (spawnedChar != NULL)
 		{
-			if (spawnedChar->getCharacterType() == Character::CharacterType::Enemy)
+			if (actionTime >= actionDelay)
 			{
-				maxLives--;
-				cout << "Enemy shot! Lives remaining:" << maxLives << endl;
+				if (spawnedChar->getCharacterType() == Character::CharacterType::Enemy)
+				{
+					maxLives--;
+					cout << "Enemy shot! Lives remaining:" << maxLives << endl;
+				}
+				else if (spawnedChar->getCharacterType() == Character::CharacterType::Innocent)
+				{
+					delete spawnedChar;
+					spawnedChar = NULL;
+					cout << "Disapeared" << endl;
+				}
+				if (spawnedChar != NULL)
+					actionTime = 0.0f;
 			}
-			else if (spawnedChar->getCharacterType() == Character::CharacterType::Innocent)
-			{
-				delete spawnedChar;
-				spawnedChar = NULL;
-				cout << "Disapeared" << endl;
-			}
-			if (spawnedChar != NULL)
-				actionTime = 0.0f;
 		}
-	}
-	else
-	{
-		SpawnCharacters();
+		else
+		{
+			SpawnCharacters();
+		}
+		if (enemiesDefeated >= 10)
+		{
+			state = State::GameOver;
+			resultText.setString("Victory!");
+		}
+		else if (maxLives <= 0)
+		{
+			state = State::GameOver;
+			resultText.setString("Defeat!");
+		}
 	}
 }
 
@@ -86,13 +99,60 @@ void GameController::Render()
 {
 	window.clear();
 
+	if (state == State::MainMenu)
+		RenderMainMenu();
+	else if (state == State::Play)
+		RenderPlayScene();
+	else if (state == State::GameOver)
+		RenderGameOver();
+
+	window.display();
+}
+
+void GameController::RenderMainMenu()
+{
+	playButton.setFont(font);
+	playButton.setString("Play");
+	playButton.setCharacterSize(30);
+	playButton.setPosition(350, 200);
+
+	exitButton.setFont(font);
+	exitButton.setString("Exit");
+	exitButton.setCharacterSize(30);
+	exitButton.setPosition(350, 200);
+
+	window.draw(playButton);
+	window.draw(exitButton);
+}
+
+void GameController::RenderPlayScene()
+{
 	window.draw(bgSpr);
 	if (spawnedChar != NULL)
 	{
 		spawnedChar->Draw(window);
 	}
 	cross.Draw(window);
-	window.display();
+	hud.setFont(font);
+	hud.setString("Lives: " + to_string(maxLives) + "Enemies killed: " + to_string(enemiesDefeated));
+	hud.setCharacterSize(30);
+	hud.setPosition(10, 10);
+	window.draw(hud);
+}
+
+void GameController::RenderGameOver()
+{
+	resultText.setFont(font);
+	resultText.setCharacterSize(40);
+	resultText.setPosition(500, 500);
+
+	backToMenuButton.setFont(font);
+	backToMenuButton.setString("Back to Menu");
+	backToMenuButton.setCharacterSize(30);
+	backToMenuButton.setPosition(320, 300);
+
+	window.draw(resultText);
+	window.draw(backToMenuButton);
 }
 
 void GameController::SpawnCharacters()
@@ -138,5 +198,6 @@ void GameController::CheckCollisions()
 
 void GameController::RestartGame()
 {
-
+	enemiesDefeated = 0;
+	maxLives = 3;
 }

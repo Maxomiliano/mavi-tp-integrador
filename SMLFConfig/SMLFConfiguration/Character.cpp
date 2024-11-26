@@ -1,4 +1,5 @@
 #include "Character.h"
+#include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 #include <cstdlib>
@@ -16,11 +17,9 @@ Character::~Character()
 
 }
 
-void Character::Spawn(Vector2u windowSize)
+void Character::Spawn(Vector2f& position)
 {
-	float x = rand() % windowSize.x - charSpr.getGlobalBounds().width;
-	float y = rand() % windowSize.y - charSpr.getGlobalBounds().height;
-	charSpr.setPosition(x, y);
+	charSpr.setPosition(position);
 	isVisible = true;
 }
 

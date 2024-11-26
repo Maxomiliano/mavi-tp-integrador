@@ -5,7 +5,7 @@ class Enemy : public Character
 public:
 	Enemy();
 	void Shoot();
-	void Spawn(sf::Vector2u windowSize) override;
+	//void Spawn(sf::Vector2f windowSize) override;
 	void setTexture(const sf::Texture& texture);
 private:
 	Texture enemyTex;

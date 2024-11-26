@@ -42,6 +42,9 @@ private:
 
 	vector<Enemy> enemies;
 	vector<Innocent> innocents;
+	vector<Vector2f> spawnPositions;
+	int randomPosition;
+	Vector2f spawn;
 
 	int enemiesDefeated;
 	int score;

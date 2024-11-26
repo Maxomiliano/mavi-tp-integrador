@@ -11,8 +11,10 @@ using namespace std;
 
 GameController::GameController() :
 
-	window(VideoMode(1024, 768, 32), "TPIntegrador"), state(State::MainMenu), maxLives(3), score(0)
+	window(VideoMode(1024, 768, 32), "TPIntegrador"), state(State::MainMenu), maxLives(3), score(0),
+	spawnPositions{ {0.f, 0.f}, {500.f, 0.f}, {400.f, 0.f}, {600.f, 0.f} }
 {
+	srand(time(NULL));
 	crossTex.loadFromFile("crosshair.png");
 	enemyTex.loadFromFile("enemy.png");
 	innocentTex.loadFromFile("innocent.jpg");
@@ -75,18 +77,20 @@ void GameController::Render()
 
 void GameController::SpawnCharacters()
 {
+	int randomPosition = rand() % spawnPositions.size();
+	Vector2f spawn = spawnPositions[randomPosition];
 	if (rand() % 100 < 5)
-	{
+	{	
 		Enemy enemy;
 		enemy.setTexture(enemyTex);
-		enemy.Spawn(window.getSize());
+		enemy.Spawn(spawn);
 		enemies.push_back(enemy);
-	}
-	else
+	} 
+	else if (rand() % 100 < 3)
 	{
 		Innocent innocent;
 		innocent.setTexture(innocentTex);
-		innocent.Spawn(window.getSize());
+		innocent.Spawn(spawn);
 		innocents.push_back(innocent);
 	}
 }
@@ -103,7 +107,7 @@ void GameController::CheckCollisions()
 			}
 			if (enemiesDefeated < maxLives)
 			{
-				enemy.Spawn(window.getSize());
+				enemy.Spawn(spawn);
 			}
 		}
 		for (auto& innocent : innocents)

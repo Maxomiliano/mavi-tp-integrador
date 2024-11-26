@@ -64,13 +64,16 @@ void GameController::Update()
 			if (spawnedChar->getCharacterType() == Character::CharacterType::Enemy)
 			{
 				maxLives--;
+				cout << "Enemy shot! Lives remaining:" << maxLives << endl;
 			}
 			else if (spawnedChar->getCharacterType() == Character::CharacterType::Innocent)
 			{
+				delete spawnedChar;
+				spawnedChar = NULL;
 				cout << "Disapeared" << endl;
 			}
-			delete spawnedChar;
-			spawnedChar = NULL;
+			if (spawnedChar != NULL)
+				actionTime = 0.0f;
 		}
 	}
 	else
@@ -114,46 +117,24 @@ void GameController::SpawnCharacters()
 }
 void GameController::CheckCollisions()
 {
-	//if (evt.type == Event::MouseButtonPressed && mouse.isButtonPressed(mouse.Left))
-	//{
-		if (spawnedChar != NULL && spawnedChar->IsClicked(Vector2f(evt.mouseButton.x, evt.mouseButton.y)))
-		{
-			if (spawnedChar->getCharacterType() == Character::CharacterType::Enemy)
-			{
-				enemiesDefeated++;
-				std::cout << "Enemy defeated! Total: " << enemiesDefeated << std::endl;
-			}
-			else if (spawnedChar->getCharacterType() == Character::CharacterType::Innocent)
-			{
-				maxLives--;
-				std::cout << "You clicked an innocent! Lives remaining: " << maxLives << std::endl;
-			}
-
-			delete spawnedChar;
-			spawnedChar = NULL;
-		}
-	//}
-}
-/*
-void GameController::CheckCollisions()
-{
-	if (evt.type == Event::MouseButtonPressed && mouse.isButtonPressed(mouse.Left))
+	if (spawnedChar != NULL && spawnedChar->IsClicked(Vector2f(evt.mouseButton.x, evt.mouseButton.y)))
 	{
-		if (enemy.IsClicked(Vector2f(evt.mouseButton.x, evt.mouseButton.y)))
+		if (spawnedChar->getCharacterType() == Character::CharacterType::Enemy)
 		{
 			enemiesDefeated++;
+			cout << "Enemy defeated! Total: " << enemiesDefeated << endl;
 		}
-		if (enemiesDefeated < maxLives)
-		{
-			enemy.Spawn(spawn);
-		}
-		if (innocent.IsClicked(Vector2f(evt.mouseButton.x, evt.mouseButton.y)))
+		else if (spawnedChar->getCharacterType() == Character::CharacterType::Innocent)
 		{
 			maxLives--;
+			cout << "You clicked an innocent! Lives remaining: " << maxLives << endl;
 		}
+
+		delete spawnedChar;
+		spawnedChar = NULL;
 	}
 }
-*/
+
 
 void GameController::RestartGame()
 {

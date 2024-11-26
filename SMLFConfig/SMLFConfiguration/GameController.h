@@ -42,8 +42,6 @@ private:
 	Sprite bgSpr;
 
 	Character* spawnedChar = NULL;
-	//vector<Enemy> enemies;
-	//vector<Innocent> innocents;
 	vector<Vector2f> spawnPositions;
 	int randomPosition;
 	Vector2f spawn;
@@ -52,6 +50,6 @@ private:
 	int score;
 	int maxLives = 3;
 	float actionTime = 0.0f;
-	float actionDelay = 0.5f;
+	float actionDelay = 1.5f;
 };
 

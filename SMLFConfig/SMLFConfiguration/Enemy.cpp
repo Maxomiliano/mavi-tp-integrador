@@ -14,13 +14,6 @@ void Enemy::Shoot()
 
 }
 
-/*
-void Enemy::Spawn(Vector2u windowSize)
-{
-	Character::Spawn(windowSize);
-}
-*/
-
 
 void Enemy::setTexture(const Texture& texture) {
 	charSpr.setTexture(texture);

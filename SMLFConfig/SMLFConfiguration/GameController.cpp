@@ -15,6 +15,10 @@ GameController::GameController() :
 	spawnPositions{ {0.f, 0.f}, {500.f, 0.f}, {400.f, 0.f}, {600.f, 0.f} }
 {
 	srand(time(NULL));
+	if (!font.loadFromFile("texas.otf"))
+	{
+		cout << "Error loading font" << endl;
+	}
 	crossTex.loadFromFile("crosshair.png");
 	enemyTex.loadFromFile("enemy.png");
 	innocentTex.loadFromFile("innocent.jpg");
@@ -119,7 +123,7 @@ void GameController::RenderMainMenu()
 	exitButton.setFont(font);
 	exitButton.setString("Exit");
 	exitButton.setCharacterSize(30);
-	exitButton.setPosition(350, 200);
+	exitButton.setPosition(150, 200);
 
 	window.draw(playButton);
 	window.draw(exitButton);

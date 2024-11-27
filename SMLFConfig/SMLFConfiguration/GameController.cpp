@@ -15,7 +15,7 @@ GameController::GameController() :
 	spawnPositions{ {0.f, 0.f}, {500.f, 0.f}, {400.f, 0.f}, {600.f, 0.f} }
 {
 	srand(time(NULL));
-	if (!font.loadFromFile("texas.otf"))
+	if (!font.loadFromFile("Cowboys.otf"))
 	{
 		cout << "Error loading font" << endl;
 	}
@@ -40,18 +40,43 @@ void GameController::Play()
 
 void GameController::ProcessEvents()
 {
+	Vector2f mousePos(evt.mouseButton.x, evt.mouseButton.y);
 	while (window.pollEvent(evt))
 	{
-		switch (evt.type)
+		switch (state)
 		{
-		case Event::Closed:
-			window.close();
+		case State::MainMenu:
+			if (evt.type == Event::MouseButtonPressed)
+			{
+				if (playButton.getGlobalBounds().contains(mousePos))
+				{
+					state = State::Play;
+					RestartGame();
+				}
+				else if (exitButton.getGlobalBounds().contains(mousePos))
+				{
+					window.close();
+				}
+			}
 			break;
-		case sf::Event::MouseMoved:
-			cross.UpdatePosition(Vector2f(evt.mouseMove.x, evt.mouseMove.y));
+		case State::Play:
+			if (evt.type == Event::MouseMoved)
+			{
+				cross.UpdatePosition(Vector2f(evt.mouseMove.x, evt.mouseMove.y));
+			}
+			else if (evt.type == Event::MouseButtonPressed)
+			{
+				CheckCollisions();
+			}
 			break;
-		case Event::MouseButtonPressed:
-			CheckCollisions();
+		case State::GameOver:
+			if (evt.type == Event::MouseButtonPressed)
+			{
+				if (backToMenuButton.getGlobalBounds().contains(mousePos))
+				{
+					state = State::MainMenu;
+				}
+			}
 			break;
 		}
 	}

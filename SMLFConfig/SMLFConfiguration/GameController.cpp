@@ -11,7 +11,7 @@ using namespace std;
 
 GameController::GameController() :
 
-	window(VideoMode(1024, 768, 32), "TPIntegrador"), state(State::MainMenu), maxLives(3), score(0), enemiesDefeated(0),
+	window(VideoMode(1024, 900, 32), "TPIntegrador"), state(State::MainMenu), maxLives(3), score(0), enemiesDefeated(0), innocentsShooted(0),
 	spawnPositions{ {0.f, 0.f}, {500.f, 0.f}, {400.f, 0.f}, {600.f, 0.f} }
 {
 	srand(time(NULL));
@@ -162,11 +162,31 @@ void GameController::RenderPlayScene()
 		spawnedChar->Draw(window);
 	}
 	cross.Draw(window);
-	hud.setFont(font);
-	hud.setString("Lives: " + to_string(maxLives) + "Enemies killed: " + to_string(enemiesDefeated));
-	hud.setCharacterSize(30);
-	hud.setPosition(10, 10);
-	window.draw(hud);
+
+	nombreAlumno.setFont(font);
+	nombreAlumno.setCharacterSize(30);
+	nombreAlumno.setString("TP Integral. Garcia, Maximiliano.");
+	nombreAlumno.setPosition(10, 870);
+
+	livesHud.setFont(font);
+	livesHud.setCharacterSize(30);
+	livesHud.setString("Lives: " + to_string(maxLives));
+	livesHud.setPosition(10, 800);
+
+	enemiesDefeatedHud.setFont(font);
+	enemiesDefeatedHud.setCharacterSize(30);
+	enemiesDefeatedHud.setString("Enemies killed: " + to_string(enemiesDefeated));
+	enemiesDefeatedHud.setPosition(10, 850);
+
+	scoreHud.setFont(font);
+	scoreHud.setCharacterSize(30);
+	scoreHud.setString("Score " + to_string(enemiesDefeated - (innocentsShooted * 2)));
+	enemiesDefeatedHud.setPosition(700, 850);
+
+	window.draw(nombreAlumno);
+	window.draw(livesHud);
+	window.draw(enemiesDefeatedHud);
+	window.draw(scoreHud);
 }
 
 void GameController::RenderGameOver()
@@ -216,6 +236,7 @@ void GameController::CheckCollisions()
 		else if (spawnedChar->getCharacterType() == Character::CharacterType::Innocent)
 		{
 			maxLives--;
+			innocentsShooted++;
 			cout << "You clicked an innocent! Lives remaining: " << maxLives << endl;
 		}
 

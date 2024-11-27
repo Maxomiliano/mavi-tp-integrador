@@ -44,7 +44,14 @@ private:
 	Texture bgTex;
 	Sprite bgSpr;
 	Font font;
-	Text playButton, exitButton, resultText, backToMenuButton, hud;
+	Text playButton,
+		exitButton,
+		resultText,
+		backToMenuButton,
+		livesHud,
+		enemiesDefeatedHud,
+		scoreHud,
+		nombreAlumno;
 
 	Character* spawnedChar = NULL;
 	vector<Vector2f> spawnPositions;
@@ -54,6 +61,7 @@ private:
 	int enemiesDefeated;
 	int score;
 	int maxLives = 3;
+	int innocentsShooted;
 	float actionTime = 0.0f;
 	float actionDelay = 1.5f;
 };

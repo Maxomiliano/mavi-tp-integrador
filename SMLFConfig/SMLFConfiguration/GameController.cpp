@@ -224,13 +224,17 @@ void GameController::RenderPlayScene()
 void GameController::RenderGameOver()
 {
 	resultText.setFont(font);
-	resultText.setCharacterSize(40);
-	resultText.setPosition(500, 500);
+	resultText.setCharacterSize(60);
+	FloatRect resulBounds = resultText.getGlobalBounds();
+	resultText.setOrigin(resulBounds.width / 2, resulBounds.height / 2);
+	resultText.setPosition(1024 / 2, 100);
 
 	backToMenuButton.setFont(font);
 	backToMenuButton.setString("Back to Menu");
 	backToMenuButton.setCharacterSize(30);
-	backToMenuButton.setPosition(320, 300);
+	FloatRect backToMenuBounds = backToMenuButton.getGlobalBounds();
+	backToMenuButton.setOrigin(backToMenuBounds.width / 2, backToMenuBounds.height / 2);
+	backToMenuButton.setPosition(1024 / 2, 700);
 
 	window.draw(resultText);
 	window.draw(backToMenuButton);

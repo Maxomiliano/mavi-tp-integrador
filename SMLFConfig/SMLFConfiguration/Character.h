@@ -19,6 +19,7 @@ public: Character();
 	  bool IsVisible() const;
 	  void setTexture(const Texture& texture);
 	  void setScale(float x, float y);
+	  void setOrigin(float x, float y);
 	  void setCharacterType(CharacterType charType) { type = charType; }
 	  CharacterType getCharacterType() { return type; }
 protected:

@@ -53,3 +53,8 @@ void Character::setTexture(const sf::Texture& texture) {
 void Character::setScale(float x, float y) {
 	charSpr.setScale(x, y);
 }
+
+void Character::setOrigin(float x, float y)
+{
+	charSpr.setOrigin(x, y);
+}

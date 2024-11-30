@@ -57,8 +57,8 @@ private:
 
 	Character* spawnedChar = NULL;
 	vector<Vector2f> spawnPositions;
-	int randomPosition;
 	Vector2f spawn;
+	Vector2f lastPosition;
 
 	int enemiesDefeated;
 	int score;

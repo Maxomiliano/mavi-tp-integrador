@@ -252,8 +252,14 @@ void GameController::SpawnCharacters()
 {
 	if (spawnedChar == NULL)
 	{
-		int randomPosition = rand() % spawnPositions.size();
-		Vector2f spawn = spawnPositions[randomPosition];
+		do
+		{
+			int randomIndex = rand() % spawnPositions.size();
+			spawn = spawnPositions[randomIndex];
+		} while (spawn == lastPosition);
+
+		lastPosition = spawn;
+
 		if (rand() % 2 == 0)
 		{
 			spawnedChar = new Enemy();

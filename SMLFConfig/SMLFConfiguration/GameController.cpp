@@ -198,22 +198,30 @@ void GameController::RenderPlayScene()
 	nombreAlumno.setFont(font);
 	nombreAlumno.setCharacterSize(30);
 	nombreAlumno.setString("TP Integral. Garcia, Maximiliano.");
-	nombreAlumno.setPosition(10, 870);
+	FloatRect nombreBounds = nombreAlumno.getLocalBounds();
+	nombreAlumno.setOrigin(nombreBounds.width / 2, nombreBounds.height / 2);
+	nombreAlumno.setPosition(1024 / 2, 750);
 
 	livesHud.setFont(font);
 	livesHud.setCharacterSize(30);
 	livesHud.setString("Lives: " + to_string(maxLives));
-	livesHud.setPosition(10, 800);
+	FloatRect livesBounds = livesHud.getLocalBounds();
+	livesHud.setOrigin(livesBounds.width / 2, livesBounds.height / 2);
+	livesHud.setPosition(100, 800);
 
 	enemiesDefeatedHud.setFont(font);
 	enemiesDefeatedHud.setCharacterSize(30);
 	enemiesDefeatedHud.setString("Enemies killed: " + to_string(enemiesDefeated));
-	enemiesDefeatedHud.setPosition(10, 850);
+	FloatRect enemiesBounds = enemiesDefeatedHud.getLocalBounds();
+	enemiesDefeatedHud.setOrigin(enemiesBounds.width / 2, enemiesBounds.height / 2);
+	enemiesDefeatedHud.setPosition(180, 850);
 
 	scoreHud.setFont(font);
 	scoreHud.setCharacterSize(30);
 	scoreHud.setString("Score " + to_string(enemiesDefeated - (innocentsShooted * 2)));
-	enemiesDefeatedHud.setPosition(700, 850);
+	FloatRect scoreBounds = scoreHud.getLocalBounds();
+	scoreHud.setOrigin(scoreBounds.width / 2, scoreBounds.height / 2);
+	scoreHud.setPosition(850, 850);
 
 	window.draw(nombreAlumno);
 	window.draw(livesHud);

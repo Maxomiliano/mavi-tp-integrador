@@ -12,7 +12,7 @@ using namespace std;
 GameController::GameController() :
 
 	window(VideoMode(1024, 900, 32), "TPIntegrador"), state(State::MainMenu), maxLives(3), score(0), enemiesDefeated(0), innocentsShooted(0),
-	spawnPositions{ {216.0f, 188.0f}, {800.0f, 188.0f}, {194.0f, 596.0f}, {850.0f, 510.0f} }
+	spawnPositions{ {216.0f, 188.0f}, {800.0f, 188.0f}, {194.0f, 510.0f}, {850.0f, 510.0f} }
 {
 	srand(time(NULL));
 	if (!font.loadFromFile("Cowboys.otf"))

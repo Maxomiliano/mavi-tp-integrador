@@ -43,6 +43,10 @@ void GameController::ProcessEvents()
 	Vector2f mousePos(evt.mouseButton.x, evt.mouseButton.y);
 	while (window.pollEvent(evt))
 	{
+		if (evt.type == Event::Closed)
+		{
+			window.close();
+		}
 		switch (state)
 		{
 		case State::MainMenu:
@@ -140,16 +144,44 @@ void GameController::Render()
 
 void GameController::RenderMainMenu()
 {
+	mainMenuTitle.setFont(font);
+	mainMenuTitle.setString("TPIntegrador");
+	mainMenuTitle.setCharacterSize(60);
+	FloatRect titleBounds = mainMenuTitle.getGlobalBounds();
+	mainMenuTitle.setOrigin(titleBounds.width / 2, titleBounds.height / 2);
+	mainMenuTitle.setPosition(1024 / 2, 100);
+
+	gameInstructions.setFont(font);
+	gameInstructions.setString("Instrucciones:\n\n"
+		"- Se apunta y dispara con el puntero del raton.\n"
+		"- Cada disparo acertado al enemigo suma 1 punto.\n"
+		"- Cada disparo a un inocente resta 1 vida.\n"
+		"- Si el enemigo dispara resta 1 vida.\n"
+		"- Se gana matando 10 enemigos.\n"
+		"- Se pierde si gastamos 3 vidas.");
+	gameInstructions.setCharacterSize(24);
+	FloatRect instructionsBounds = gameInstructions.getGlobalBounds();
+	gameInstructions.setOrigin(instructionsBounds.width / 2, instructionsBounds.height / 2);
+	gameInstructions.setPosition(1024 / 2, 400);
+
+
 	playButton.setFont(font);
 	playButton.setString("Play");
 	playButton.setCharacterSize(30);
-	playButton.setPosition(350, 200);
+	FloatRect playBounds = playButton.getGlobalBounds();
+	playButton.setOrigin(playBounds.width / 2, playBounds.height / 2);
+	playButton.setPosition(1024 / 4, 700);
+
 
 	exitButton.setFont(font);
 	exitButton.setString("Exit");
 	exitButton.setCharacterSize(30);
-	exitButton.setPosition(150, 200);
+	FloatRect exitBounds = exitButton.getGlobalBounds();
+	exitButton.setOrigin(exitBounds.width / 2, exitBounds.height / 2);
+	exitButton.setPosition(3 * 1024 /4, 700);
 
+	window.draw(mainMenuTitle);
+	window.draw(gameInstructions);
 	window.draw(playButton);
 	window.draw(exitButton);
 }
@@ -250,4 +282,5 @@ void GameController::RestartGame()
 {
 	enemiesDefeated = 0;
 	maxLives = 3;
+	score = 0;
 }

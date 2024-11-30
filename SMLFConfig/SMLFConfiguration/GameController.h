@@ -51,7 +51,9 @@ private:
 		livesHud,
 		enemiesDefeatedHud,
 		scoreHud,
-		nombreAlumno;
+		nombreAlumno,
+		mainMenuTitle,
+		gameInstructions;
 
 	Character* spawnedChar = NULL;
 	vector<Vector2f> spawnPositions;

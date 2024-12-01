@@ -99,13 +99,11 @@ void GameController::Update()
 				if (spawnedChar->getCharacterType() == Character::CharacterType::Enemy)
 				{
 					maxLives--;
-					cout << "Enemy shot! Lives remaining:" << maxLives << endl;
 				}
 				else if (spawnedChar->getCharacterType() == Character::CharacterType::Innocent)
 				{
 					delete spawnedChar;
 					spawnedChar = NULL;
-					cout << "Disapeared" << endl;
 				}
 				if (spawnedChar != NULL)
 					actionTime = 0.0f;
@@ -282,13 +280,11 @@ void GameController::CheckCollisions()
 		if (spawnedChar->getCharacterType() == Character::CharacterType::Enemy)
 		{
 			enemiesDefeated++;
-			cout << "Enemy defeated! Total: " << enemiesDefeated << endl;
 		}
 		else if (spawnedChar->getCharacterType() == Character::CharacterType::Innocent)
 		{
 			maxLives--;
 			innocentsShooted++;
-			cout << "You clicked an innocent! Lives remaining: " << maxLives << endl;
 		}
 
 		delete spawnedChar;

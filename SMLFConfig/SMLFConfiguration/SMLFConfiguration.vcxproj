@@ -130,34 +130,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Alien.cpp" />
     <ClCompile Include="Character.cpp" />
-    <ClCompile Include="Clickale.cpp" />
     <ClCompile Include="Cross.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="GameController.cpp" />
-    <ClCompile Include="HUD.cpp" />
     <ClCompile Include="Innocent.cpp" />
-    <ClCompile Include="Input.cpp" />
-    <ClCompile Include="MainMenu.cpp" />
-    <ClCompile Include="Player.cpp" />
-    <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="TpIntegrador.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Alien.h" />
-    <ClInclude Include="Atrapado.h" />
     <ClInclude Include="Character.h" />
-    <ClInclude Include="Clickale.h" />
     <ClInclude Include="Cross.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="GameController.h" />
-    <ClInclude Include="HUD.h" />
     <ClInclude Include="Innocent.h" />
-    <ClInclude Include="Input.h" />
-    <ClInclude Include="MainMenu.h" />
-    <ClInclude Include="Player.h" />
-    <ClInclude Include="SceneManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
